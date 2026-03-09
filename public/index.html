@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Adaptive AI Health and Wellness Coach</title>
+</head>
+
+<body>
+
+<h2>Adaptive AI Health and Wellness Coach</h2>
+
+<input type="text" id="problem" placeholder="Enter your health concern">
+<button onclick="getAdvice()">Get Advice</button>
+
+<p id="result"></p>
+
+<script>
+
+function getAdvice() {
+
+let problem = document.getElementById("problem").value;
+
+fetch("/advice", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({problem: problem})
+})
+
+.then(res => res.json())
+.then(data => {
+document.getElementById("result").innerText = data.advice;
+});
+
+}
+
+</script>
+
+</body>
+</html>
